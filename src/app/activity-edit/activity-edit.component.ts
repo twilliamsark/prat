@@ -39,8 +39,7 @@ export class ActivityEditComponent implements OnInit {
         this.selectedActivity ? this.selectedActivity.activity_type : '',
         Validators.required),
       'day': new FormControl(
-        this.selectedActivity ? this.selectedActivity.day : 'Monday', 
-        Validators.required)
+        this.selectedActivity ? this.selectedActivity.day : 'Monday')
     });
   }
 
@@ -63,7 +62,7 @@ export class ActivityEditComponent implements OnInit {
   }
 
   onSave() {
-    console.log(JSON.stringify(this.activityEditForm.value));
+    // console.log(JSON.stringify(this.activityEditForm.value));
     const activity_type = this.activityEditForm.get('activity').value;
     const day_of_week = this.activityEditForm.get('day').value;
 
