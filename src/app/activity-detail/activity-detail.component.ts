@@ -23,4 +23,7 @@ export class ActivityDetailComponent implements OnInit {
     );
   }
 
+  onRecordActivity() {
+    this.activityService.newInstance(this.selectedActivity).complete();
+  }
 }
