@@ -1,20 +1,18 @@
-<div class="row">
-  <a [routerLink]="[index]"
-    routerLinkActive="active"
-    class="col-xs-10 pull-left"
-    style="cursor: pointer;">
-    <h4 class="list-group-item-heading">
-      {{ activity.activity_type }} ({{ activity.instances.length }})
-    </h4>
-    <!-- <p class="list-group-item-text">
-      {{ activity.day }} ({{ activity.instances.length }})
-    </p> -->
-  </a>
-  <div class="col-xs-2">
-    <div class="pull-right">
-      <a [routerLink]="[index, 'edit']">
-        <button type="button" class="btn btn-primary">Edit</button>
-      </a>
-    </div>
+<div class="d-flex align-items-center justify-content-between">
+  <strong>{{currentActivity.activity_type}}</strong>
+  <div>
+    <button
+      class="btn btn-sm btn-outline-primary ml-2" 
+      (click)="onRecordInstance()"
+    >Record</button>
+    <button
+      [disabled]="currentActivity.isEmpty()"
+      (click)="onShowInstances()"
+      class="btn btn-sm btn-outline-secondary ml-2"
+      >Instances</button>
+    <a [routerLink]="[activityIndex, 'edit']">
+      <button type="button" class="btn btn-sm btn-outline-primary ml-2">Edit</button>
+    </a>                
   </div>
 </div>
+

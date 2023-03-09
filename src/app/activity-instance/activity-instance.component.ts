@@ -1,18 +1,32 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { NgbAccordion } from '@ng-bootstrap/ng-bootstrap';
 import { RepeatingActivityInstance } from 'src/models/repeating-activity-instance.model';
+import { RepeatingActivity } from 'src/models/repeating-activity.model';
+import { RepeatingActivityService } from 'src/services/repeating-activity.service';
 
 @Component({
   selector: 'app-activity-instance',
   templateUrl: './activity-instance.component.html',
   styleUrls: ['./activity-instance.component.css']
 })
-export class ActivityInstanceComponent implements OnInit {
+export class ActivityInstanceComponent {
   @Input() instance: RepeatingActivityInstance;
   @Input() index: number = 0;
 
-  constructor() { }
+  // This is ugly
+  @Input() accordian: NgbAccordion;
+  @Input() activityIndex: number = 0;
 
-  ngOnInit(): void {
+  constructor(private activityService: RepeatingActivityService) {}
+
+  repeatingActivity(): RepeatingActivity {
+    return this.instance.getActivity();
   }
 
+  onDelete() {
+    this.activityService.removeInstance(this.index, this.repeatingActivity());
+    if (this.repeatingActivity().isEmpty()) {
+      this.accordian.collapse('activity-'+this.activityIndex);
+    }
+  }
 }

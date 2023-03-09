@@ -37,9 +37,7 @@ export class ActivityEditComponent implements OnInit {
     this.activityEditForm = new FormGroup({
       'activity': new FormControl(
         this.selectedActivity ? this.selectedActivity.activity_type : '',
-        Validators.required),
-      'day': new FormControl(
-        this.selectedActivity ? this.selectedActivity.day : 'Monday')
+        Validators.required)
     });
   }
 
@@ -50,33 +48,24 @@ export class ActivityEditComponent implements OnInit {
 
     if (this.editMode) {
       this.activityEditForm.reset({
-        activity: this.selectedActivity.activity_type,
-        day: this.selectedActivity.day
+        activity: this.selectedActivity.activity_type
       });
     } else {
       this.activityEditForm.reset({
-        activity: '',
-        day: 'Monday'
+        activity: ''
       });
     }
   }
 
   onSave() {
-    // console.log(JSON.stringify(this.activityEditForm.value));
     const activity_type = this.activityEditForm.get('activity').value;
-    const day_of_week = this.activityEditForm.get('day').value;
 
     if(this.editMode) {
       this.selectedActivity.activity_type = activity_type;
-      this.selectedActivity.day = day_of_week;
       this.activityService.updateActivity(this.id, this.selectedActivity);
     } else {
-      this.activityService.newActivity(day_of_week, activity_type);
+      this.activityService.newActivity(activity_type);
     }
     this.router.navigate(['/']);
-  }
-
-  allowedDays(): string[] {
-    return this.activityService.DAYS;
   }
 }

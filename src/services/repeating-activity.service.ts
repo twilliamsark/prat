@@ -6,17 +6,13 @@ export class RepeatingActivityService {
   public activitiesChanged = new Subject<null>();
 
   public activities: RepeatingActivity[] = [
-    new RepeatingActivity("Monday", "Walking"),
-    new RepeatingActivity("Tuesday", "PT")
+    new RepeatingActivity("Walking"),
+    new RepeatingActivity("PT")
   ];
 
-  public DAYS: string[] = [
-    'Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'
-  ];
-
-  newActivity(day_of_week: string, activity: string): { activity: RepeatingActivity, index: number } {
+  newActivity(activity: string): { activity: RepeatingActivity, index: number } {
     const new_activity = new RepeatingActivity(
-      day_of_week, activity
+      activity
     );
     this.activities.push(new_activity);
     this.activitiesChanged.next(null);
@@ -27,7 +23,7 @@ export class RepeatingActivityService {
   }
   
   newInstance(activity: RepeatingActivity): RepeatingActivityInstance {
-    const instance = new RepeatingActivityInstance(activity);
+    const instance = new RepeatingActivityInstance(activity, activity.instances.length + 1);
     activity.instances.push(instance);
     return instance;
   }
@@ -38,6 +34,11 @@ export class RepeatingActivityService {
 
   updateActivity(index: number, activity: RepeatingActivity) {
     this.activities[index] = activity;
+    this.activitiesChanged.next(null);
+  }
+
+  removeInstance(index: number, activity: RepeatingActivity) {
+    activity.instances.splice(index, 1);
     this.activitiesChanged.next(null);
   }
 }
