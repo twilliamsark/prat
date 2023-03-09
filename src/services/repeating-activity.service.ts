@@ -6,17 +6,13 @@ export class RepeatingActivityService {
   public activitiesChanged = new Subject<null>();
 
   public activities: RepeatingActivity[] = [
-    new RepeatingActivity("Monday", "Walking"),
-    new RepeatingActivity("Tuesday", "PT")
+    new RepeatingActivity("Walking"),
+    new RepeatingActivity("PT")
   ];
 
-  public DAYS: string[] = [
-    'Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'
-  ];
-
-  newActivity(day_of_week: string, activity: string): { activity: RepeatingActivity, index: number } {
+  newActivity(activity: string): { activity: RepeatingActivity, index: number } {
     const new_activity = new RepeatingActivity(
-      day_of_week, activity
+      activity
     );
     this.activities.push(new_activity);
     this.activitiesChanged.next(null);

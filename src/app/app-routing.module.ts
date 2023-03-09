@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActivitiesComponent } from './activities/activities.component';
-import { ActivityDetailComponent } from './activity-detail/activity-detail.component';
 import { ActivityEditComponent } from './activity-edit/activity-edit.component';
 
 const routes: Routes = [
@@ -17,10 +16,6 @@ const routes: Routes = [
   {
     path: 'activities/new',
     component: ActivityEditComponent
-  },
-  {
-    path: 'activities/:id',
-    component: ActivityDetailComponent
   },
   {
     path: 'activities/:id/edit',
