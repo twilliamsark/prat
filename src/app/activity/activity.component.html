@@ -5,14 +5,14 @@
       class="btn btn-sm btn-outline-primary ml-2" 
       (click)="onRecordInstance()"
     >Record</button>
-    <button
-      [disabled]="currentActivity.isEmpty()"
-      (click)="onShowInstances()"
-      class="btn btn-sm btn-outline-secondary ml-2"
-      >Instances</button>
     <a [routerLink]="[activityIndex, 'edit']">
       <button type="button" class="btn btn-sm btn-outline-primary ml-2">Edit</button>
     </a>                
+    <button
+      [disabled]="currentActivity.isEmpty()"
+      (click)="onShowInstances()"
+      class="btn btn-sm btn-outline-secondary ml-2 dropdown-toggle"
+      >Instances</button>
   </div>
 </div>
 
