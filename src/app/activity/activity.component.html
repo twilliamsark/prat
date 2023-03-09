@@ -1,0 +1,18 @@
+<div class="d-flex align-items-center justify-content-between">
+  <strong>{{currentActivity.activity_type}}</strong>
+  <div>
+    <button
+      class="btn btn-sm btn-outline-primary ml-2" 
+      (click)="onRecordInstance()"
+    >Record</button>
+    <button
+      [disabled]="currentActivity.isEmpty()"
+      (click)="onShowInstances()"
+      class="btn btn-sm btn-outline-secondary ml-2"
+      >Instances</button>
+    <a [routerLink]="[activityIndex, 'edit']">
+      <button type="button" class="btn btn-sm btn-outline-primary ml-2">Edit</button>
+    </a>                
+  </div>
+</div>
+

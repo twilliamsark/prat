@@ -38,10 +38,6 @@ export class ActivityListComponent implements OnInit, OnDestroy {
     // lastOne.complete();
   }
 
-  onRecordInstance(activity: RepeatingActivity) {
-    this.activityService.newInstance(activity).complete();
-  }
-
   ngOnDestroy(): void {
     this.activitiesChangedSubscription.unsubscribe();
   }

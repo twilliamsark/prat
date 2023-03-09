@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgbAccordion } from '@ng-bootstrap/ng-bootstrap';
 import { RepeatingActivityInstance } from 'src/models/repeating-activity-instance.model';
 import { RepeatingActivity } from 'src/models/repeating-activity.model';
 import { RepeatingActivityService } from 'src/services/repeating-activity.service';
@@ -12,6 +13,10 @@ export class ActivityInstanceComponent {
   @Input() instance: RepeatingActivityInstance;
   @Input() index: number = 0;
 
+  // This is ugly
+  @Input() accordian: NgbAccordion;
+  @Input() activityIndex: number = 0;
+
   constructor(private activityService: RepeatingActivityService) {}
 
   repeatingActivity(): RepeatingActivity {
@@ -20,5 +25,8 @@ export class ActivityInstanceComponent {
 
   onDelete() {
     this.activityService.removeInstance(this.index, this.repeatingActivity());
+    if (this.repeatingActivity().isEmpty()) {
+      this.accordian.collapse('activity-'+this.activityIndex);
+    }
   }
 }

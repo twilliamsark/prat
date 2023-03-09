@@ -2,36 +2,30 @@
 <div class="row justify-content-center">
   <div class="col-xs-12">
     <ngb-accordion #a="ngbAccordion" [closeOthers]="true" activeIds="">
-
-        <ngb-panel 
-          *ngFor="let currentActivity of activities; let i = index" 
-          id="activity-{{i}}">
-          <ng-template ngbPanelHeader>
-            <div class="d-flex align-items-center justify-content-between">
-              <strong>{{currentActivity.activity_type}}</strong>
-              <div>
-                <button 
-                  class="btn btn-sm btn-outline-primary ml-2" 
-                  (click)="onRecordInstance(currentActivity); a.expand('activity-'+i)"
-                >Record</button>
-                <button ngbPanelToggle class="btn btn-sm btn-outline-secondary ml-2">Instances</button>
-                <a [routerLink]="[i, 'edit']">
-                  <button type="button" class="btn btn-sm btn-outline-primary ml-2">Edit</button>
-                </a>                
-              </div>
-            </div>
-          </ng-template>
-          <ng-template ngbPanelContent>
-            <ul class="list-group">
-              <app-activity-instance 
-                class="list-group-item"
-                *ngFor="let instance of currentActivity.instances; let instanceIndex = index"
-                [instance]="instance"
-                [index]="instanceIndex">
-              </app-activity-instance>
-            </ul>  
-          </ng-template>
-        </ngb-panel>
+      
+      <ngb-panel
+        *ngFor="let currentActivity of activities; let activityIndex = index"
+        id="activity-{{activityIndex}}">
+        <ng-template ngbPanelHeader>
+          <app-activity
+            [currentActivity]="currentActivity"
+            [activityIndex]="activityIndex"
+            [accordian]="a">
+          </app-activity>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <ul class="list-group">
+            <app-activity-instance 
+              class="list-group-item"
+              *ngFor="let instance of currentActivity.instances; let instanceIndex = index"
+              [instance]="instance"
+              [index]="instanceIndex"
+              [accordian]="a"
+              [activityIndex]="activityIndex">
+            </app-activity-instance>
+          </ul>  
+        </ng-template>
+      </ngb-panel>
   
     </ngb-accordion>
   </div>
