@@ -15,7 +15,7 @@ export class RepeatingActivityInstance {
 
   completed(): string {
     if (this.completedOn) {
-      return formatDate(this.completedOn, 'medium', 'en-US');
+      return formatDate(this.completedOn, 'short', 'en-US');
     } else {
       return "Incomplete";
     }

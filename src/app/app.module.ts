@@ -11,9 +11,9 @@ import { AppComponent } from './app.component';
 import { ActivityListComponent } from './activity-list/activity-list.component';
 import { ActivityComponent } from './activity/activity.component';
 import { ActivitiesComponent } from './activities/activities.component';
-import { HeaderComponent } from './header/header.component';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { ActivityEditComponent } from './activity-edit/activity-edit.component';
+import { ActivityInstanceComponent } from './activity-instance/activity-instance.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +22,8 @@ import { ActivityEditComponent } from './activity-edit/activity-edit.component';
     ActivityComponent,
     ActivitiesComponent,
     DropdownDirective,
-    HeaderComponent,
-    ActivityEditComponent
+    ActivityEditComponent,
+    ActivityInstanceComponent
   ],
   imports: [
     BrowserModule,

@@ -1,21 +1,4 @@
-<div class="row justify-content-around">
-  <div class="col-xs-4">
-    <h4>Activities</h4>
-  </div>
-  <div class="col-xs-4">
-    <button
-      routerLink="new"
-      class="btn btn-success"
-      type="button">New Activity</button>
-  </div>
-</div>
-<hr>
-<!-- <div class="row" *ngFor="let currentActivity of activities; let i = index">
-  <div class="col-xs-12">
-    <strong>Bob</strong>
-    <h4>{{ currentActivity.activity_type }} ({{ currentActivity.instances.length }})</h4>
-  </div>
-</div> -->
+
 <div class="row justify-content-center">
   <div class="col-xs-12">
     <ngb-accordion #a="ngbAccordion" [closeOthers]="true" activeIds="">
@@ -39,16 +22,14 @@
             </div>
           </ng-template>
           <ng-template ngbPanelContent>
-            <div class="row justify-content-center">
-              <ul class="list-group">
-                <app-activity-instance
-                  class="list-group-item"
-                  *ngFor="let instance of currentActivity.instances; let instanceIndex = index"
-                  [instance]="instance"
-                  [index]="instanceIndex">
-                </app-activity-instance>
-              </ul>  
-            </div>        
+            <ul class="list-group">
+              <app-activity-instance 
+                class="list-group-item"
+                *ngFor="let instance of currentActivity.instances; let instanceIndex = index"
+                [instance]="instance"
+                [index]="instanceIndex">
+              </app-activity-instance>
+            </ul>  
           </ng-template>
         </ngb-panel>
   
