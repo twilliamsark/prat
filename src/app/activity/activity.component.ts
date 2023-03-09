@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbAccordion } from '@ng-bootstrap/ng-bootstrap';
 import { RepeatingActivity } from 'src/models/repeating-activity.model';
 import { RepeatingActivityService } from 'src/services/repeating-activity.service';
@@ -8,18 +8,12 @@ import { RepeatingActivityService } from 'src/services/repeating-activity.servic
   templateUrl: './activity.component.html',
   styleUrls: ['./activity.component.css']
 })
-export class ActivityComponent implements OnInit {
+export class ActivityComponent {
   @Input() currentActivity: RepeatingActivity;
   @Input() activityIndex: number;
   @Input() accordian: NgbAccordion;
 
   constructor(private activityService: RepeatingActivityService) { }
-
-  ngOnInit(): void {
-    console.log(this.currentActivity);
-    console.log(this.activityIndex);
-    console.log(this.accordian);
-  }
 
   onRecordInstance() {
     this.activityService.newInstance(this.currentActivity).complete();
