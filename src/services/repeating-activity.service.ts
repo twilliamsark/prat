@@ -23,7 +23,7 @@ export class RepeatingActivityService {
   }
   
   newInstance(activity: RepeatingActivity): RepeatingActivityInstance {
-    const instance = new RepeatingActivityInstance(activity);
+    const instance = new RepeatingActivityInstance(activity, activity.instances.length + 1);
     activity.instances.push(instance);
     return instance;
   }
@@ -34,6 +34,11 @@ export class RepeatingActivityService {
 
   updateActivity(index: number, activity: RepeatingActivity) {
     this.activities[index] = activity;
+    this.activitiesChanged.next(null);
+  }
+
+  removeInstance(index: number, activity: RepeatingActivity) {
+    activity.instances.splice(index, 1);
     this.activitiesChanged.next(null);
   }
 }

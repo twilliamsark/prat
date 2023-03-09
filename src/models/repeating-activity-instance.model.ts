@@ -4,9 +4,21 @@ import { RepeatingActivity } from "./repeating-activity.model";
 export class RepeatingActivityInstance {
   private activity: RepeatingActivity;
   private completedOn: number;
+  private labelNumber: number = null;
 
-  constructor(activity: RepeatingActivity) {
+  constructor(activity: RepeatingActivity, label: number = null) {
     this.activity = activity;
+    if (label) {
+      this.labelNumber = label;
+    }
+  }
+
+  getLabel() {
+    if (this.labelNumber) {
+      return "(" + this.labelNumber + ") ";
+    } else {
+      return ""
+    }
   }
 
   getActivity(): RepeatingActivity {

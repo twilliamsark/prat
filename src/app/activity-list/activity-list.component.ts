@@ -15,7 +15,7 @@ export class ActivityListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.activities = this.activityService.activities;
-    console.log(this.activities);
+
     this.activitiesChangedSubscription =
       this.activityService.activitiesChanged.subscribe(
         () => {

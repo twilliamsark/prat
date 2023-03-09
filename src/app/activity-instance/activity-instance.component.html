@@ -1,4 +1,6 @@
 <div class="row justify-content-between">
-  <div class="col-xs-4"><strong>{{instance.completed()}}</strong></div>
-  <div class="col-xs-4"><button type="button" class="btn btn-sm btn-outline-danger ml-2">Delete</button></div>                    
+  <div class="col-xs-4"><strong>{{instance.getLabel()}}{{instance.completed()}}</strong></div>
+  <div class="col-xs-4">
+    <button type="button" class="btn btn-sm btn-outline-danger ml-2" (click)="onDelete()">Delete</button>
+  </div>                    
 </div>
