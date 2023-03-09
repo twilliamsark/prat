@@ -17,10 +17,24 @@ export class ActivityComponent {
 
   onRecordInstance() {
     this.activityService.newInstance(this.currentActivity).complete();
-    this.onShowInstances();
+
+    let panelName = this.panelId();
+    if (!this.accordian.isExpanded(panelName)) {
+      this.accordian.expand(panelName);
+    }
   }
 
   onShowInstances() {
-    this.accordian.expand('activity-'+this.activityIndex);
+    let panelName = this.panelId();
+
+    if (this.accordian.activeIds[0] === panelName) {
+      this.accordian.collapse(panelName);
+    } else {
+      this.accordian.expand(panelName);
+    }
+  }
+
+  panelId(): string {
+    return 'activity-'+this.activityIndex;
   }
 }
