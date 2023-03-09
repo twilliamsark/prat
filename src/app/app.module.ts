@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { ActivityListComponent } from './activity-list/activity-list.component';
 import { ActivityComponent } from './activity/activity.component';
 import { ActivitiesComponent } from './activities/activities.component';
-import { DropdownDirective } from './directives/dropdown.directive';
 import { ActivityEditComponent } from './activity-edit/activity-edit.component';
 import { ActivityInstanceComponent } from './activity-instance/activity-instance.component';
 
@@ -21,7 +20,6 @@ import { ActivityInstanceComponent } from './activity-instance/activity-instance
     ActivityListComponent,
     ActivityComponent,
     ActivitiesComponent,
-    DropdownDirective,
     ActivityEditComponent,
     ActivityInstanceComponent
   ],
