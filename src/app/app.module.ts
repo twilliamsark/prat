@@ -9,7 +9,6 @@ import { RepeatingActivityService } from 'src/services/repeating-activity.servic
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ActivityListComponent } from './activity-list/activity-list.component';
-import { ActivityComponent } from './activity/activity.component';
 import { ActivitiesComponent } from './activities/activities.component';
 import { ActivityEditComponent } from './activity-edit/activity-edit.component';
 import { ActivityInstanceComponent } from './activity-instance/activity-instance.component';
@@ -18,7 +17,6 @@ import { ActivityInstanceComponent } from './activity-instance/activity-instance
   declarations: [
     AppComponent,
     ActivityListComponent,
-    ActivityComponent,
     ActivitiesComponent,
     ActivityEditComponent,
     ActivityInstanceComponent
