@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { RepeatingActivityService } from 'src/services/repeating-activity.service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,7 +32,8 @@ import { ActivityEditComponent } from './activity-edit/activity-edit.component';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [RepeatingActivityService],
   bootstrap: [AppComponent]

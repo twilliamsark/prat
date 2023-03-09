@@ -1,20 +1,15 @@
-<div class="row">
-  <a [routerLink]="[index]"
-    routerLinkActive="active"
-    class="col-xs-10 pull-left"
-    style="cursor: pointer;">
-    <h4 class="list-group-item-heading">
-      {{ activity.activity_type }} ({{ activity.instances.length }})
-    </h4>
-    <!-- <p class="list-group-item-text">
-      {{ activity.day }} ({{ activity.instances.length }})
-    </p> -->
-  </a>
-  <div class="col-xs-2">
-    <div class="pull-right">
-      <a [routerLink]="[index, 'edit']">
-        <button type="button" class="btn btn-primary">Edit</button>
-      </a>
+<ngb-panel [id]="'activity_panel+'+index">
+  <ng-template ngbPanelHeader>
+    <div class="d-flex align-items-center justify-content-between">
+      <h4>{{ activity.activity-type }} ({{ activity.instances.length }})</h4>
+      <div>
+        <button class="btn btn-sm btn-primary">Record</button>
+        <button class="btn btn-sm btn-primary">List</button>
+        <button class="btn btn-sm btn-primary">Edit</button>
+      </div>
     </div>
-  </div>
-</div>
+  </ng-template>
+  <ng-template ngbPanelContent>
+    <strong>Bob</strong>
+  </ng-template>
+</ngb-panel>

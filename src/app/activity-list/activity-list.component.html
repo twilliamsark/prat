@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-xs-8">
+<div class="row justify-content-around">
+  <div class="col-xs-4">
     <h4>Activities</h4>
   </div>
   <div class="col-xs-4">
@@ -10,15 +10,48 @@
   </div>
 </div>
 <hr>
-<div class="row">
+<!-- <div class="row" *ngFor="let currentActivity of activities; let i = index">
   <div class="col-xs-12">
-    <ul class="list-group">
-      <app-activity
-        class="list-group-item"
-        *ngFor="let currentActivity of activities; let i = index"
-        [activity]="currentActivity"
-        [index]="i">
-      </app-activity>
-    </ul>
+    <strong>Bob</strong>
+    <h4>{{ currentActivity.activity_type }} ({{ currentActivity.instances.length }})</h4>
+  </div>
+</div> -->
+<div class="row justify-content-center">
+  <div class="col-xs-12">
+    <ngb-accordion #a="ngbAccordion" [closeOthers]="true" activeIds="">
+
+        <ngb-panel 
+          *ngFor="let currentActivity of activities; let i = index" 
+          id="activity-{{i}}">
+          <ng-template ngbPanelHeader>
+            <div class="d-flex align-items-center justify-content-between">
+              <h4>{{currentActivity.activity_type}}</h4>
+              <div>
+                <button 
+                  class="btn btn-sm btn-outline-primary ml-2" 
+                  (click)="onRecordInstance(currentActivity); a.expand('activity-'+i)"
+                >Record</button>
+                <button ngbPanelToggle class="btn btn-sm btn-outline-secondary ml-2">Instances</button>
+                <a [routerLink]="[i, 'edit']">
+                  <button type="button" class="btn btn-sm btn-outline-primary ml-2">Edit</button>
+                </a>                
+              </div>
+            </div>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div class="row justify-content-center">
+              <ul class="list-group">
+                <app-activity-instance
+                  class="list-group-item"
+                  *ngFor="let instance of currentActivity.instances; let instanceIndex = index"
+                  [instance]="instance"
+                  [index]="instanceIndex">
+                </app-activity-instance>
+              </ul>  
+            </div>        
+          </ng-template>
+        </ngb-panel>
+  
+    </ngb-accordion>
   </div>
 </div>

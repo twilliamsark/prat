@@ -15,7 +15,7 @@ export class ActivityListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.activities = this.activityService.activities;
-
+    console.log(this.activities);
     this.activitiesChangedSubscription =
       this.activityService.activitiesChanged.subscribe(
         () => {
@@ -36,6 +36,10 @@ export class ActivityListComponent implements OnInit, OnDestroy {
     // const lastActivity = this.activities[this.activities.length - 1];
     // const lastOne = this.activityService.newInstance(lastActivity);
     // lastOne.complete();
+  }
+
+  onRecordInstance(activity: RepeatingActivity) {
+    this.activityService.newInstance(activity).complete();
   }
 
   ngOnDestroy(): void {
