@@ -1,14 +1,33 @@
 import { Subject } from "rxjs";
 import { RepeatingActivityInstance } from "src/models/repeating-activity-instance.model";
 import { RepeatingActivity } from "src/models/repeating-activity.model";
+import { Tag } from "src/models/tag.model";
 
 export class RepeatingActivityService {
   public activitiesChanged = new Subject<null>();
 
-  public activities: RepeatingActivity[] = [
-    new RepeatingActivity("Walking"),
-    new RepeatingActivity("PT")
+  private activities: RepeatingActivity[] = [
+    new RepeatingActivity("Walking", [
+      new Tag('LowImpact'),
+      new Tag('Relaxing'),
+      new Tag('Outside'),
+      new Tag('Inside'),
+      new Tag('AudioBook')
+    ]),
+    new RepeatingActivity("PT", [
+      new Tag('Cardio'),
+      new Tag('Inside')
+    ]),
+    new RepeatingActivity("Reading")
   ];
+
+  getActivities() : RepeatingActivity[] {
+    return this.activities.slice();
+  }
+
+  getActivity(index: number) : RepeatingActivity {
+    return this.activities[index];
+  }
 
   newActivity(activity: string): { activity: RepeatingActivity, index: number } {
     const new_activity = new RepeatingActivity(

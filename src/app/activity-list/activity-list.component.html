@@ -1,6 +1,6 @@
 
-<div class="row justify-content-center">
-  <div class="col-xs-12">
+<div class="d-flex">
+  <div class="flex-grow-1">
     <ngb-accordion #a="ngbAccordion" [closeOthers]="true" activeIds="">
       
       <ngb-panel
@@ -15,6 +15,18 @@
         </ng-template>
         <ng-template ngbPanelContent>
           <ul class="list-group">
+            <!-- TODO: tag-panel.component -->
+            <div *ngIf="currentActivity.tags.length > 0" class="list-group-item">
+              <div class="d-flex flex-wrap">
+                  <span 
+                    class="mr-2 mb-2 badge badge-pill badge-primary"
+                    *ngFor="let tag of currentActivity.tags"
+                  >
+                    {{ tag.name }}
+                  </span>
+              </div>
+            </div>
+            <!-- TODO: look into scrollspy -->
             <app-activity-instance 
               class="list-group-item"
               *ngFor="let instance of currentActivity.instances; let instanceIndex = index"

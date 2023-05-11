@@ -1,5 +1,6 @@
 import { formatDate } from "@angular/common";
 import { RepeatingActivity } from "./repeating-activity.model";
+import { Tag } from "./tag.model";
 
 export class RepeatingActivityInstance {
   private activity: RepeatingActivity;
@@ -19,6 +20,10 @@ export class RepeatingActivityInstance {
     } else {
       return ""
     }
+  }
+
+  getTags(): Tag[] {
+    return this.activity.tags.slice();
   }
 
   getActivity(): RepeatingActivity {

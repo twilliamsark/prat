@@ -29,7 +29,7 @@ export class ActivityEditComponent implements OnInit {
 
         if(this.editMode) {
           this.selectedActivity =
-            this.activityService.activities[this.id];
+            this.activityService.getActivity(this.id);
         }
       }
     );

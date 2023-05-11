@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+
 import { RepeatingActivity } from 'src/models/repeating-activity.model';
 import { RepeatingActivityService } from 'src/services/repeating-activity.service';
 
@@ -11,31 +12,28 @@ import { RepeatingActivityService } from 'src/services/repeating-activity.servic
 export class ActivityListComponent implements OnInit, OnDestroy {
   activities: RepeatingActivity[] = [];
   activitiesChangedSubscription: Subscription;
+
   constructor(private activityService: RepeatingActivityService) { }
 
   ngOnInit(): void {
-    this.activities = this.activityService.activities;
+    this.activities = this.activityService.getActivities();
 
     this.activitiesChangedSubscription =
       this.activityService.activitiesChanged.subscribe(
         () => {
-          this.activities = this.activityService.activities;
+          this.activities = this.activityService.getActivities();
         }
       );
 
     //
     // Populate some instances
-    // 
-    // this.activities.forEach((activity: RepeatingActivity) => {
-    //   const instance = this.activityService.newInstance(activity);
-    //   instance.complete();
     //
-    //   this.activityService.newInstance(activity);  
-    // });
-    //    
-    // const lastActivity = this.activities[this.activities.length - 1];
-    // const lastOne = this.activityService.newInstance(lastActivity);
-    // lastOne.complete();
+    if (false) {
+      this.activities.forEach((activity: RepeatingActivity) => {
+        this.activityService.newInstance(activity).complete();
+        this.activityService.newInstance(activity).complete();
+      });
+      } 
   }
 
   ngOnDestroy(): void {
