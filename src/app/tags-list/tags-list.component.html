@@ -1,0 +1,12 @@
+<div 
+*ngIf="tags.length > 0" 
+class="list-group-item">
+<div class="d-flex flex-wrap">
+    <span 
+      class="mr-2 mb-2 badge badge-pill badge-primary"
+      *ngFor="let tag of tags"
+    >
+      {{ tag.name }}
+    </span>
+</div>
+</div>

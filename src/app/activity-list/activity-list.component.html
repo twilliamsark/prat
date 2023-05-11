@@ -15,17 +15,8 @@
         </ng-template>
         <ng-template ngbPanelContent>
           <ul class="list-group">
-            <!-- TODO: tag-panel.component -->
-            <div *ngIf="currentActivity.tags.length > 0" class="list-group-item">
-              <div class="d-flex flex-wrap">
-                  <span 
-                    class="mr-2 mb-2 badge badge-pill badge-primary"
-                    *ngFor="let tag of currentActivity.tags"
-                  >
-                    {{ tag.name }}
-                  </span>
-              </div>
-            </div>
+            <app-tags-list [tags]="currentActivity.tags">
+            </app-tags-list>
             <!-- TODO: look into scrollspy -->
             <app-activity-instance 
               class="list-group-item"

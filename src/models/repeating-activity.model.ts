@@ -12,6 +12,14 @@ export class RepeatingActivity {
     this.tags = tags;
   }
 
+  addTag(name: string) {
+    this.tags.push(new Tag(name));
+  }
+
+  hasTags(): boolean {
+    return this.tags.length > 0;
+  }
+
   isEmpty(): boolean {
     return this.instances.length == 0 ? true : false;
   }

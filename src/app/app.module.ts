@@ -13,6 +13,7 @@ import { ActivitiesComponent } from './activities/activities.component';
 import { ActivityEditComponent } from './activity-edit/activity-edit.component';
 import { ActivityInstanceComponent } from './activity-instance/activity-instance.component';
 import { ActivityComponent } from './activity/activity.component';
+import { TagsListComponent } from './tags-list/tags-list.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ActivityComponent } from './activity/activity.component';
     ActivitiesComponent,
     ActivityEditComponent,
     ActivityInstanceComponent,
-    ActivityComponent
+    ActivityComponent,
+    TagsListComponent
   ],
   imports: [
     BrowserModule,

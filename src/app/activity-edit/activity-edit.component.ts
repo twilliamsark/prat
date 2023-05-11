@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RepeatingActivity } from 'src/models/repeating-activity.model';
 import { RepeatingActivityService } from 'src/services/repeating-activity.service';
+import { Tag } from 'src/models/tag.model';
+
 
 @Component({
   selector: 'app-activity-edit',
@@ -15,6 +17,7 @@ export class ActivityEditComponent implements OnInit {
   id: number;
   selectedActivity: RepeatingActivity;
 
+  tags: Tag[] = [];
 
   constructor(private activityService: RepeatingActivityService,
               private router: Router,
@@ -37,8 +40,29 @@ export class ActivityEditComponent implements OnInit {
     this.activityEditForm = new FormGroup({
       'activity': new FormControl(
         this.selectedActivity ? this.selectedActivity.activity_type : '',
-        Validators.required)
+        Validators.required),
+      'tag': new FormControl([undefined])
     });
+  }
+
+  removeTag(tag) {
+    // TODO
+  }
+
+  onKeyUp(event: KeyboardEvent): void {
+    const inputValue: string = this.activityEditForm.controls.tag.value;
+    if (inputValue && event.code === 'Comma') {
+
+      const tagValue = inputValue.trim().replace(',','');
+
+      if (this.selectedActivity) {
+        this.selectedActivity.addTag(tagValue);
+      } else {
+        this.tags.push(new Tag(tagValue));
+      }
+      this.activityEditForm.controls.tag.setValue('');
+
+    }
   }
 
   onCancel() {
@@ -64,8 +88,11 @@ export class ActivityEditComponent implements OnInit {
       this.selectedActivity.activity_type = activity_type;
       this.activityService.updateActivity(this.id, this.selectedActivity);
     } else {
-      this.activityService.newActivity(activity_type);
+      const rs = this.activityService.newActivity(activity_type);
+      this.selectedActivity = rs.activity;
+      this.selectedActivity.tags = this.tags;
     }
+
     this.router.navigate(['/']);
   }
 }
