@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { RepeatingActivity } from 'src/app/activities/repeating-activity.model';
-import { RepeatingActivityService } from 'src/app/activities/repeating-activity.service';
-import { Tag } from 'src/app/tags/tag.model';
+import { RepeatingActivity } from '../repeating-activity.model';
+import { RepeatingActivityService } from '../repeating-activity.service';
+import { Tag } from '../../tags/tag.model';
 
 
 @Component({

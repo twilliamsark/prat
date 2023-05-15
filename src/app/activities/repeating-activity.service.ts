@@ -1,7 +1,7 @@
 import { Subject } from "rxjs";
-import { RepeatingActivityInstance } from "src/app/activities/repeating-activity-instance.model";
-import { RepeatingActivity } from "src/app/activities/repeating-activity.model";
-import { Tag } from "src/app/tags/tag.model";
+import { RepeatingActivityInstance } from "./repeating-activity-instance.model";
+import { RepeatingActivity } from "./repeating-activity.model";
+import { Tag } from "../tags/tag.model";
 
 export class RepeatingActivityService {
   public activitiesChanged = new Subject<null>();
