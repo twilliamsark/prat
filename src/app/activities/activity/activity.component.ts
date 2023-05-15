@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NgbAccordion } from '@ng-bootstrap/ng-bootstrap';
-import { RepeatingActivity } from 'src/models/repeating-activity.model';
-import { RepeatingActivityService } from 'src/services/repeating-activity.service';
+import { RepeatingActivity } from 'src/app/activities/repeating-activity.model';
+import { RepeatingActivityService } from 'src/app/activities/repeating-activity.service';
 
 @Component({
   selector: 'app-activity',

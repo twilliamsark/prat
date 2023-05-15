@@ -1,5 +1,5 @@
 import { RepeatingActivityInstance } from "./repeating-activity-instance.model";
-import { Tag } from "./tag.model";
+import { Tag } from "../tags/tag.model";
 
 export class RepeatingActivity {
   public instances: RepeatingActivityInstance[] = [];

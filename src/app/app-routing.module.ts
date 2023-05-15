@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActivitiesComponent } from './activities/activities.component';
-import { ActivityEditComponent } from './activity-edit/activity-edit.component';
+import { ActivityEditComponent } from './activities/activity-edit/activity-edit.component';
 
 const routes: Routes = [
   {

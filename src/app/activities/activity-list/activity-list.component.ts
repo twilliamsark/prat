@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { RepeatingActivity } from 'src/models/repeating-activity.model';
-import { RepeatingActivityService } from 'src/services/repeating-activity.service';
+import { RepeatingActivity } from 'src/app/activities/repeating-activity.model';
+import { RepeatingActivityService } from 'src/app/activities/repeating-activity.service';
 
 @Component({
   selector: 'app-activity-list',

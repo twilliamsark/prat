@@ -1,6 +1,6 @@
 import { formatDate } from "@angular/common";
 import { RepeatingActivity } from "./repeating-activity.model";
-import { Tag } from "./tag.model";
+import { Tag } from "../tags/tag.model";
 
 export class RepeatingActivityInstance {
   private activity: RepeatingActivity;
