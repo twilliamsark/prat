@@ -9,7 +9,6 @@ export class RepeatingActivityService {
   private activities: RepeatingActivity[] = [
     new RepeatingActivity("Walking", [
       new Tag('LowImpact'),
-      new Tag('Relaxing'),
       new Tag('Outside'),
       new Tag('Inside'),
       new Tag('AudioBook')
