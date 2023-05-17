@@ -58,7 +58,11 @@ export class ActivityEditComponent implements OnInit, OnDestroy {
             });
           })
         ).subscribe((repeatingActivity: RepeatingActivity) => {
-          this.selectedActivity = Object.assign({}, repeatingActivity); // make deep copy so we can update tags
+          this.selectedActivity = 
+            new RepeatingActivity(repeatingActivity.activity_type, [...repeatingActivity.tags]);
+          // FYI OR
+          //   make deep copy so we can update tags
+          //   this.selectedActivity = Object.assign({}, repeatingActivity);
           this.tags = [...this.selectedActivity.tags];
         });
   }
