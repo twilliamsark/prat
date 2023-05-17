@@ -1,13 +1,19 @@
 <div class="d-flex align-items-center justify-content-between">
   <!-- TODO: look at using d-flex to increase click area of activity name -->
-  <button type="button" class="btn btn-link" (click)="onShowInstances()"><strong>{{currentActivity.activity_type}}</strong></button>
+  <button 
+    type="button" 
+    class="btn btn-link" 
+    (click)="onShowInstances()">
+      <strong>{{currentActivity.activity_type}}</strong>
+  </button>
   <div>
     <button
+      type="button"
       class="btn btn-sm btn-outline-primary ml-2" 
-      (click)="onRecordInstance()"
-    >Record</button>
-    <a [routerLink]="[activityIndex, 'edit']">
-      <button type="button" class="btn btn-sm btn-outline-primary ml-2">Edit</button>
-    </a>                
+      (click)="onRecordInstance()">Record</button>
+    <button 
+      type="button" 
+      class="btn btn-sm btn-outline-primary ml-2"
+      (click)="onEdit()">Edit</button>
   </div>
 </div>

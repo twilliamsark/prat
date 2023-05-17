@@ -40,12 +40,14 @@ export interface ActivityState {
   repeating_activities: RepeatingActivity[];
   repeating_activities_instances: RepeatingActivityInstance[];
   tag_pool: Tag[];
+  edit_activity: boolean;
 }
 
 const initialState: ActivityState = {
   repeating_activities: initialRepeatingActivities,
   repeating_activities_instances: [],
-  tag_pool: repeatingActivitySortedTagPool(initialRepeatingActivities)
+  tag_pool: repeatingActivitySortedTagPool(initialRepeatingActivities),
+  edit_activity: false
 }
 
 export function activityReducer(
@@ -53,6 +55,36 @@ export function activityReducer(
   action: ActivityActions.ActivityActions
 ) {
   switch(action.type) {
+    case ActivityActions.EDIT_ACTIVITY_START:
+      return {
+        ...state,
+        edit_activity: true
+      };
+
+    case ActivityActions.EDIT_ACTIVITY_STOP:
+      return {
+        ...state,
+        edit_activity: false
+      };
+
+    case ActivityActions.UPDATE_ACTIVITY:
+      const updateAction: ActivityActions.UpdateActivity =
+        (action as ActivityActions.UpdateActivity);
+
+      const updateActivityState = {
+        ...state,
+        repeating_activities: [...state.repeating_activities],
+        tag_pool: [...state.tag_pool]
+      };
+
+      updateActivityState.repeating_activities[updateAction.payload.index] =
+        updateAction.payload.repeatingActivity;
+
+      updateActivityState.tag_pool = 
+        repeatingActivitySortedTagPool(updateActivityState.repeating_activities);
+
+      return updateActivityState;
+
     default:
       return state;
   }
