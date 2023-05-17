@@ -25,7 +25,7 @@ export class ActivityEditComponent implements OnInit, OnDestroy {
 
   public tags: Tag[] = [];
 
-  private activitySubscription: Subscription;
+  private editActivitySubscription: Subscription;
 
   constructor(private activityService: RepeatingActivityService,
               private router: Router,
@@ -40,22 +40,30 @@ export class ActivityEditComponent implements OnInit, OnDestroy {
         this.editMode = this.id != null ? true : false;
 
         if(this.editMode) {
-          this.activitySubscription = 
-            this.store.select('activityList').
-              pipe(
-                map((activityState: ActivityState) => {
-                  return activityState.repeating_activities.find((_activity_, index) => {
-                    return this.id === index;
-                  });
-                })
-              ).subscribe((repeatingActivity: RepeatingActivity) => {
-                this.selectedActivity = Object.assign({}, repeatingActivity); // make deep copy so we can update tags
-                this.tags = [...repeatingActivity.tags];
-              });
+          this.createEditActivitySubscription();
         }
       }
     );
 
+    this.initForm();
+  }
+
+  createEditActivitySubscription() {
+    this.editActivitySubscription = 
+      this.store.select('activityList').
+        pipe(
+          map((activityState: ActivityState) => {
+            return activityState.repeating_activities.find((_activity_, index) => {
+              return this.id === index;
+            });
+          })
+        ).subscribe((repeatingActivity: RepeatingActivity) => {
+          this.selectedActivity = Object.assign({}, repeatingActivity); // make deep copy so we can update tags
+          this.tags = [...this.selectedActivity.tags];
+        });
+  }
+
+  initForm() {
     this.activityEditForm = new FormGroup({
       'activity': new FormControl(
         this.selectedActivity ? this.selectedActivity.activity_type : '',
@@ -65,8 +73,8 @@ export class ActivityEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.activitySubscription) {
-      this.activitySubscription.unsubscribe();
+    if (this.editActivitySubscription) {
+      this.editActivitySubscription.unsubscribe();
     }
   }
 
@@ -97,18 +105,31 @@ export class ActivityEditComponent implements OnInit, OnDestroy {
  
   onCancel() {
     if (this.activityEditForm.untouched) {
-      this.store.dispatch(new ActivityActions.EditActivityStop());
+      if (this.editMode) {
+        this.store.dispatch(new ActivityActions.EditActivityStop());
+      } else {
+        this.store.dispatch(new ActivityActions.NewActivityStop());
+      }
       this.router.navigate(['/']);
+    } else {
+      this.resetForm();
     }
+  }
 
+  // TODO: reset tags
+  resetForm() {
     if (this.editMode) {
       this.activityEditForm.reset({
-        activity: this.selectedActivity.activity_type
+        activity: this.selectedActivity.activity_type,
+        tag: ''
       });
+      this.tags = [...this.selectedActivity.tags];
     } else {
       this.activityEditForm.reset({
-        activity: ''
+        activity: '',
+        tag: ''
       });
+      this.tags = [];
     }
   }
 

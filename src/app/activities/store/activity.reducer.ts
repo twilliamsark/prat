@@ -67,6 +67,13 @@ export function activityReducer(
         edit_activity: false
       };
 
+    case ActivityActions.NEW_ACTIVITY_START:
+    case ActivityActions.NEW_ACTIVITY_STOP:
+      return {
+        ...state,
+        edit_activity: false
+      };
+ 
     case ActivityActions.UPDATE_ACTIVITY:
       const updateAction: ActivityActions.UpdateActivity =
         (action as ActivityActions.UpdateActivity);

@@ -5,6 +5,8 @@ import { Tag } from "../../tags/tag.model";
 export const ADD_NEW_ACTIVITY = "[Activity] Add New Activity";
 export const EDIT_ACTIVITY_START = "[Activity] Edit Activity Start";
 export const EDIT_ACTIVITY_STOP = "[Activity] Edit Activity Stop";
+export const NEW_ACTIVITY_START = "[Activity] New Activity Start";
+export const NEW_ACTIVITY_STOP = "[Activity] New Activity Stop";
 export const UPDATE_ACTIVITY = "[Activity] Update Activity";
 
 export class AddNewActivity implements Action {
@@ -19,6 +21,14 @@ export class EditActivityStart implements Action {
 
 export class EditActivityStop implements Action {
   readonly type: string = EDIT_ACTIVITY_STOP;
+}
+
+export class NewActivityStart implements Action {
+  readonly type: string = NEW_ACTIVITY_START;
+}
+
+export class NewActivityStop implements Action {
+  readonly type: string = NEW_ACTIVITY_STOP;
 }
 
 export class UpdateActivity implements Action {
