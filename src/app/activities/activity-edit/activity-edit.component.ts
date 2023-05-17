@@ -116,7 +116,6 @@ export class ActivityEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  // TODO: reset tags
   resetForm() {
     if (this.editMode) {
       this.activityEditForm.reset({
@@ -139,14 +138,16 @@ export class ActivityEditComponent implements OnInit, OnDestroy {
     if(this.editMode) {
       this.selectedActivity.activity_type = activity_type;
       this.selectedActivity.tags = this.tags;
-      this.store.dispatch(new ActivityActions.UpdateActivity({ 
+        this.store.dispatch(new ActivityActions.UpdateActivity({ 
         index: this.id, 
         repeatingActivity: this.selectedActivity
       }));
     } else {
-      const rs = this.activityService.newActivity(activity_type);
-      this.selectedActivity = rs.activity;
-      this.selectedActivity.tags = this.tags;
+      this.store.dispatch(
+        new ActivityActions.AddNewActivity(
+          new RepeatingActivity(activity_type, this.tags)
+        )
+      );
     }
 
     this.router.navigate(['/']);

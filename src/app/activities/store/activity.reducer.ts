@@ -55,6 +55,16 @@ export function activityReducer(
   action: ActivityActions.ActivityActions
 ) {
   switch(action.type) {
+    case ActivityActions.ADD_NEW_ACTIVITY:
+      const newAction: ActivityActions.AddNewActivity =
+        (action as ActivityActions.AddNewActivity);
+
+      return {
+        ...state,
+        repeating_activities: [...state.repeating_activities, newAction.payload],
+        edit_activity: false
+      };
+
     case ActivityActions.EDIT_ACTIVITY_START:
       return {
         ...state,

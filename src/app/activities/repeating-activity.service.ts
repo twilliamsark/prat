@@ -20,26 +20,6 @@ export class RepeatingActivityService {
     new RepeatingActivity("Reading")
   ];
 
-  getActivities() : RepeatingActivity[] {
-    return this.activities.slice();
-  }
-
-  getActivity(index: number) : RepeatingActivity {
-    return this.activities[index];
-  }
-
-  newActivity(activity: string): { activity: RepeatingActivity, index: number } {
-    const new_activity = new RepeatingActivity(
-      activity
-    );
-    this.activities.push(new_activity);
-    this.activitiesChanged.next(null);
-    return {
-      activity: new_activity,
-      index: this.activities.length
-    };
-  }
-  
   newInstance(activity: RepeatingActivity): RepeatingActivityInstance {
     const instance = new RepeatingActivityInstance(activity, activity.instances.length + 1);
     activity.instances.push(instance);
@@ -48,11 +28,6 @@ export class RepeatingActivityService {
 
   instances(activity: RepeatingActivity): RepeatingActivityInstance[] {
     return activity.instances;
-  }
-
-  updateActivity(index: number, activity: RepeatingActivity) {
-    this.activities[index] = activity;
-    this.activitiesChanged.next(null);
   }
 
   removeInstance(index: number, activity: RepeatingActivity) {

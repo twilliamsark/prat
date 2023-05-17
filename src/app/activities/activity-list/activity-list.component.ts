@@ -28,24 +28,6 @@ export class ActivityListComponent implements OnInit, OnDestroy {
         subscribe((repeatingActivities: RepeatingActivity[]) => {
           this.activities = repeatingActivities;
         });
-
-        // this.activities = this.activityService.getActivities();
-        // this.activitiesSubscription =
-        //   this.activityService.activitiesChanged.subscribe(
-        //     () => {
-        //       this.activities = this.activityService.getActivities();
-        //     }
-        //   );
-
-    //
-    // Populate some instances
-    //
-    // if (false) {
-    //   this.activities.forEach((activity: RepeatingActivity) => {
-    //     this.activityService.newInstance(activity).complete();
-    //     this.activityService.newInstance(activity).complete();
-    //   });
-    //   } 
   }
 
   ngOnDestroy(): void {
