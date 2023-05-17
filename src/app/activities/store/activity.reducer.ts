@@ -38,14 +38,12 @@ function repeatingActivitySortedTagPool(repeatingActivities: RepeatingActivity[]
 
 export interface ActivityState {
   repeating_activities: RepeatingActivity[];
-  repeating_activities_instances: RepeatingActivityInstance[];
   tag_pool: Tag[];
   edit_activity: boolean;
 }
 
 const initialState: ActivityState = {
   repeating_activities: initialRepeatingActivities,
-  repeating_activities_instances: [],
   tag_pool: repeatingActivitySortedTagPool(initialRepeatingActivities),
   edit_activity: false
 }
@@ -55,6 +53,21 @@ export function activityReducer(
   action: ActivityActions.ActivityActions
 ) {
   switch(action.type) {
+    case ActivityActions.ADD_ACTIVITY_INSTANCE:
+      const addInstance: ActivityActions.AddActivityInstance =
+        (action as ActivityActions.AddActivityInstance);
+
+      const addInstanceState: ActivityState = {
+        ...state,
+        repeating_activities: [...state.repeating_activities]
+      }
+
+      let addToMe = addInstanceState.repeating_activities[addInstance.payload] =
+        Object.assign(new RepeatingActivity, addInstanceState.repeating_activities[addInstance.payload]);
+      addToMe.addInstance(true);
+
+      return addInstanceState;
+
     case ActivityActions.ADD_NEW_ACTIVITY:
       const newAction: ActivityActions.AddNewActivity =
         (action as ActivityActions.AddNewActivity);
@@ -64,6 +77,23 @@ export function activityReducer(
         repeating_activities: [...state.repeating_activities, newAction.payload],
         edit_activity: false
       };
+
+    case ActivityActions.DELETE_ACTIVITY_INSTANCE:
+      const deleteInstance: ActivityActions.DeleteActivityInstance =
+        (action as ActivityActions.DeleteActivityInstance);
+
+      const deleteInstanceState: ActivityState = {
+        ...state,
+        repeating_activities: [...state.repeating_activities]
+      };
+
+      let removeFromMe = 
+        deleteInstanceState.repeating_activities[deleteInstance.payload.activityIndex] =
+          Object.assign(new RepeatingActivity, deleteInstanceState.repeating_activities[deleteInstance.payload.activityIndex]);
+
+      removeFromMe.removeInstance(deleteInstance.payload.instanceIndex);
+
+      return deleteInstanceState;
 
     case ActivityActions.EDIT_ACTIVITY_START:
       return {
@@ -88,7 +118,7 @@ export function activityReducer(
       const updateAction: ActivityActions.UpdateActivity =
         (action as ActivityActions.UpdateActivity);
 
-      const updateActivityState = {
+      const updateActivityState: ActivityState = {
         ...state,
         repeating_activities: [...state.repeating_activities],
         tag_pool: [...state.tag_pool]

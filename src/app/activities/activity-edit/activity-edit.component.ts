@@ -7,10 +7,11 @@ import { Tag } from '../../tags/tag.model';
 
 import * as fromApp from '../../store/app.reducer';
 import * as ActivityActions from '../store/activity.actions';
+import * as fromActivity from '../store/activity.reducer';
 
 import { Store } from '@ngrx/store';
 import { Subscription, map } from 'rxjs';
-import { ActivityState } from '../store/activity.reducer';
+
 
 @Component({
   selector: 'app-activity-edit',
@@ -52,7 +53,7 @@ export class ActivityEditComponent implements OnInit, OnDestroy {
     this.editActivitySubscription = 
       this.store.select('activityList').
         pipe(
-          map((activityState: ActivityState) => {
+          map((activityState: fromActivity.ActivityState) => {
             return activityState.repeating_activities.find((_activity_, index) => {
               return this.id === index;
             });
@@ -60,10 +61,11 @@ export class ActivityEditComponent implements OnInit, OnDestroy {
         ).subscribe((repeatingActivity: RepeatingActivity) => {
           this.selectedActivity = 
             new RepeatingActivity(repeatingActivity.activity_type, [...repeatingActivity.tags]);
+          this.tags = this.selectedActivity.tags;
           // FYI OR
-          //   make deep copy so we can update tags
+          //   make deep copy so we can copy/update tags
           //   this.selectedActivity = Object.assign({}, repeatingActivity);
-          this.tags = [...this.selectedActivity.tags];
+          //   this.tags = [...this.selectedActivity.tags];
         });
   }
 

@@ -20,18 +20,14 @@ export class RepeatingActivityService {
     new RepeatingActivity("Reading")
   ];
 
-  newInstance(activity: RepeatingActivity): RepeatingActivityInstance {
-    const instance = new RepeatingActivityInstance(activity, activity.instances.length + 1);
-    activity.instances.push(instance);
-    return instance;
-  }
+  // newInstance(activity: RepeatingActivity): RepeatingActivityInstance {
+  //   const instance = new RepeatingActivityInstance(activity, activity.instances.length + 1);
+  //   activity.instances.push(instance);
+  //   return instance;
+  // }
 
-  instances(activity: RepeatingActivity): RepeatingActivityInstance[] {
-    return activity.instances;
-  }
-
-  removeInstance(index: number, activity: RepeatingActivity) {
-    activity.instances.splice(index, 1);
-    this.activitiesChanged.next(null);
-  }
+  // removeInstance(index: number, activity: RepeatingActivity) {
+  //   activity.instances.splice(index, 1);
+  //   this.activitiesChanged.next(null);
+  // }
 }

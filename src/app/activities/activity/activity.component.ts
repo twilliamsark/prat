@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NgbAccordion } from '@ng-bootstrap/ng-bootstrap';
 import { RepeatingActivity } from '../repeating-activity.model';
-import { RepeatingActivityService } from '../repeating-activity.service';
+// import { RepeatingActivityService } from '../repeating-activity.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import * as ActivityActions from '../store/activity.actions';
@@ -19,15 +19,15 @@ export class ActivityComponent {
   @Input() accordian: NgbAccordion;
 
   constructor(
-    private activityService: RepeatingActivityService,
+    // private activityService: RepeatingActivityService,
     private router: Router,
     private route: ActivatedRoute,
     private store: Store<fromApp.AppState>
   ) { }
 
   onRecordInstance() {
-    this.activityService.newInstance(this.currentActivity).complete();
-
+    // this.activityService.newInstance(this.currentActivity).complete();
+    this.store.dispatch(new ActivityActions.AddActivityInstance(this.activityIndex));
     let panelName = this.panelId();
     if (!this.accordian.isExpanded(panelName)) {
       this.accordian.expand(panelName);
